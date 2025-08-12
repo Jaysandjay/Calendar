@@ -30,22 +30,23 @@ function clearInput() {
 }
 
 function addItem() {
+  console.log("submit")
   if (!formRef.value.validate()) {
     return
   }
   const newEvent = {
-    title: event.value,
-    start: new Date(dueDate.value),
-    end: new Date(dueDate.value),
+    class: selectedClass.value,
     color: classesStore.getColor(selectedClass.value),
-    allDay: false,
+    event: event.value
   }
-  eventsStore.addEvent(newEvent)
+  eventsStore.addEvent(dueDate.value,newEvent)
   clearInput()
 }
 </script>
 
 <template>
+  {{ dueDate }}
+  {{ eventsStore.events }}
   <v-sheet class="mx-auto my-5" width="350">
     <v-form ref="formRef" @submit.prevent="addItem">
       <v-text-field v-model="event" :rules="rules" label="Event"></v-text-field>
