@@ -29,7 +29,7 @@ export const useDateDataStore = defineStore('dateData', {
     },
     getDay() {
         const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-      return dayNames[this.selectedDate.getDay()]
+        return dayNames[this.selectedDate.getDay()]
     },
     getNumOfDaysInMonth() {
       const num = new Date(this.selectedDate.getFullYear(), this.selectedDate.getMonth() + 1, 0).getDate()
@@ -75,13 +75,9 @@ export const useDateDataStore = defineStore('dateData', {
             while(weeks.week6.length < 7){
                 weeks.week6.push(99)
             }
-        }
-      
-        
+        }     
         return weeks
     }
-
-
 },
   actions: {
     setDate(date) {

@@ -32,6 +32,7 @@ function handle(){
     >
         <v-card-title>
             {{ day != 99 ? day: null }}
+            
         </v-card-title>
     </v-card>
 

@@ -3,7 +3,13 @@ import { defineStore } from 'pinia'
 export const useEventsStore = defineStore('events', {
   state: () => {
     return {
-      items: [],
+      items: {
+        [new Date().toISOString()] : {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        }
+      },
     }
   },
   getters: {},
