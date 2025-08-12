@@ -2,27 +2,21 @@
 import Calendar from '../components/Calendar.vue'
 import Legend from '../components/Legend.vue'
 import AddEvent from '../components/AddEvent.vue'
+import TodayBtn from '@/components/TodayBtn.vue'
 </script>
 
 <template>
-  <main>
-    <div class="info">
+  <div class="container">
+    <aside>
+      <TodayBtn/>
       <Legend />
       <AddEvent />
-    </div>
-    <div class="display">
+    </aside>
+
+    <main>
       <Calendar />
-    </div>
-  </main>
+    </main>
+  </div>
 </template>
 
-<style scoped>
-main {
-  display: flex;
-  justify-content: end;
-}
 
-main div {
-  padding: 15px;
-}
-</style>
