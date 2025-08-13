@@ -1,11 +1,17 @@
 @import './base.css';
-
+:root{
+  --mainColor: rgb(84, 182, 178)
+}
 
 html, body {
   margin: 0;
   padding: 0px;
   width: 100%;
   height: 100%;
+}
+
+.mainColor{
+  background-color: var(--mainColor);
 }
 
 .container {
@@ -17,7 +23,7 @@ html, body {
 
 aside {
   padding: 1rem;
-  background-color: rgb(84, 182, 178);
+  background-color: var(--mainColor);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 10px -5px, rgba(0, 0, 0, 0.14) 0px 16px 24px 2px, rgba(0, 0, 0, 0.12) 0px 6px 30px 5px
 }
 
@@ -38,11 +44,21 @@ main {
 .scrollable-list {
   max-height: 100px;  
   overflow-y: auto;    
+  border: 1px solid lightgray;
 }
 
 .scrollable-list::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+  width: 8px;
+}
+
+.scrollable-list::-webkit-scrollbar-track {
+  background: lightgray;
+  border-radius: 4px;
+}
+
+.scrollable-list::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 4px;
 }
 
 .list-item{
@@ -51,6 +67,7 @@ main {
 }
 
 .dayCard{
+  background-color: var(--mainColor) !important;
   cursor: pointer;
 }
 
@@ -59,8 +76,30 @@ main {
   opacity: 0.5;
 }
 
+.activeDay {
+  /* Lighter version of --mainColor */
+  opacity: 50%;
+}
+
 .day-label{
   min-width: 250px
+}
+
+.classes-modal{
+  padding: 5px;
+  min-height: 50%;
+  width: 30%;
+
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 a,

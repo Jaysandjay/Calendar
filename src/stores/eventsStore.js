@@ -24,7 +24,11 @@ export const useEventsStore = defineStore('events', {
       },
     }
   },
-  getters: {},
+  getters: {
+    getEvent: (state) => (date) =>{
+      
+    }
+  },
   actions: {
     async fill() {
       // Fill items with data from database.

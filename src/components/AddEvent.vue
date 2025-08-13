@@ -1,21 +1,41 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useClassesStore } from '../stores/classesStore'
 import { useEventsStore } from '../stores/eventsStore'
+import { useDateDataStore } from '@/stores/dateData'
 
 const eventsStore = useEventsStore()
 const classesStore = useClassesStore()
+const dateStore = useDateDataStore()
 const event = ref('')
 const selectedClass = ref()
-const dueDate = ref()
+const dueDate = computed({
+  get(){return dateToString(dateStore.selectedDate)},
+  set(date){dateStore.setDate(unformatDate(date))}
+})
 const formRef = ref(null)
 
-const rules = [
-  (value) => {
-    if (value) return true
-    return 'You must enter a name for the event.'
-  },
-]
+
+function dateToString(date){
+  console.log(typeof(date))
+  let year = (date.getFullYear())
+  let month = (date.getMonth() + 1)
+  let day = (date.getDate())
+  if(month < 10){
+    month = `0${month}`
+  }
+  if(day < 10){
+    day = `0${day}`
+  }
+  let formatedDate = `${year}-${month}-${day}`
+  return formatedDate
+}
+
+function unformatDate(date){
+  let split = date.split('-')
+  let selectedDate = new Date(split[0], split[1] - 1, split[2])
+  return selectedDate
+}
 
 function clearInput() {
   event.value = ''
@@ -30,7 +50,7 @@ function clearInput() {
 }
 
 function addItem() {
-  console.log("submit")
+
   if (!formRef.value.validate()) {
     return
   }
@@ -42,14 +62,18 @@ function addItem() {
   eventsStore.addEvent(dueDate.value,newEvent)
   clearInput()
 }
+
+
 </script>
 
 <template>
-  {{ dueDate }}
-  {{ eventsStore.events }}
   <v-sheet class="mx-auto my-5" width="350">
     <v-form ref="formRef" @submit.prevent="addItem">
-      <v-text-field v-model="event" :rules="rules" label="Event"></v-text-field>
+      <v-text-field 
+      v-model="event" 
+      :rules="[(v) => !!v || 'Event is required']" 
+      label="Event"
+      ></v-text-field>
 
       <v-select
         class="my-5"

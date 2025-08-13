@@ -1,17 +1,19 @@
 import { defineStore } from 'pinia'
-
 export const useDateDataStore = defineStore('dateData', {
+
   state: () => {
     const now = new Date()
     const formatedDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
     return {
       selectedDate: formatedDate,
+
     }
   },
   getters: {
     getToday(){
         const now = new Date()
         const formatedDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+        console.log(formatedDate)
         return formatedDate
     },
     getMonth() {

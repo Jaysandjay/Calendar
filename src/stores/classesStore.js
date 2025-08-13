@@ -23,4 +23,15 @@ export const useClassesStore = defineStore('classes', {
       return item ? item.color : 'black'
     },
   },
+  actions: {
+    addClass(newClass){
+      this.items.push(newClass)
+    },
+    deleteClass(classInfo){
+      console.log(classInfo)
+      let updatedClasses = this.items.filter((c) => !(c.class == classInfo.class && c.color == classInfo.color))
+      this.items = updatedClasses
+    }
+    
+  }
 })
