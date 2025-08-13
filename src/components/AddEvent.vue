@@ -40,7 +40,6 @@ function unformatDate(date){
 function clearInput() {
   event.value = ''
   selectedClass.value = null
-  dueDate.value = null
   if (formRef.value) {
     // Wait for next tick so DOM updates
     setTimeout(() => {
@@ -67,7 +66,7 @@ function addItem() {
 </script>
 
 <template>
-  <v-sheet class="mx-auto my-5" width="350">
+  <v-sheet class="mx-auto my-5" width="450">
     <v-form ref="formRef" @submit.prevent="addItem">
       <v-text-field 
       v-model="event" 

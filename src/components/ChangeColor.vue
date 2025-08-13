@@ -6,12 +6,13 @@ const mainColor = getComputedStyle(root).getPropertyValue('--mainColor').trim()
 const selectedColor = ref(mainColor)
 
 const colors = [
-  { label: 'Red', value: 'rgb(255, 60, 60)' },
+  { label: 'Pink', value: 'rgb(232, 40, 165)' },
   { label: 'Teal', value: 'rgb(84, 182, 178)' },
   { label: 'Blue', value: 'rgb(0, 90, 255)' },
   { label: 'Green', value: 'rgb(0, 128, 0)' },
   { label: 'Orange', value: 'rgb(255, 165, 0)' },
-  { label: 'Purple', value: 'rgb(128, 0, 128)' }
+  { label: 'Purple', value: 'rgb(128, 0, 128)' },
+
 ]
 
 function updateColor(){

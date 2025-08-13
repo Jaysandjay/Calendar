@@ -49,33 +49,39 @@ function addClass(){
             ></v-icon>
 
             <Legend :hasDelete="true"/>
+ 
             <v-form ref="formRef" @submit.prevent="addClass" class="mt-5">
-                <v-select
-                v-model="selectedColor"
-                label="Color"
-                :items="colors.map(c=>({title: '', value: c}))"
-                item-title="title"
-                item-value="value"
-                outlined
-            >
-                <!-- Customize how each item looks in the dropdown -->
-                <template #item="{ item, props }">
-                    <v-list-item v-bind="props">
-                        <v-icon :style="{color: item.value}" class="mr-2">mdi-circle</v-icon>
-                    </v-list-item>
-                </template>
+                <div  class="d-flex "> 
+                    <div style="width: 80px">
 
-                  <!-- Selected value -->
-                <template #selection="{ item }">
-                    <v-icon :style="{color: item.value}">mdi-circle</v-icon>
-                </template>
-            </v-select>
-
-            <v-text-field 
-            v-model="className" 
-            :rules="[(v) => !!v || 'Class is required']" 
-            label="Class Name"
-            ></v-text-field>
+                        <v-select
+                        v-model="selectedColor"
+                        :items="colors.map(c=>({title: '', value: c}))"
+                        item-title="title"
+                        item-value="value"
+                        style="width: 80px"
+                        outlined
+                    >
+                        <!-- Customize how each item looks in the dropdown -->
+                        <template #item="{ item, props }">
+                            <v-list-item v-bind="props">
+                                <v-icon :style="{color: item.value}" class="mr-2">mdi-circle</v-icon>
+                            </v-list-item>
+                        </template>
+        
+                          <!-- Selected value -->
+                        <template #selection="{ item }">
+                            <v-icon :style="{color: item.value}">mdi-circle</v-icon>
+                        </template>
+                    </v-select>
+                    </div>
+    
+                <v-text-field 
+                v-model="className" 
+                :rules="[(v) => !!v || 'Class is required']" 
+                label="Class Name"
+                ></v-text-field>
+                </div>
 
             <v-btn class="mt-4" type="submit" block>Submit</v-btn>
 

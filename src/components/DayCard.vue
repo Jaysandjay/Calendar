@@ -1,9 +1,11 @@
 <script setup>
-import { defineProps } from 'vue';
+import { computed, defineProps } from 'vue';
 import { useDateDataStore } from '@/stores/dateData';
 import { useEventsStore } from '@/stores/eventsStore';
 const dataStore = useDateDataStore()
+
 const eventsStore = useEventsStore()
+
 const props = defineProps({
   day: {
     type: Number,
@@ -11,22 +13,32 @@ const props = defineProps({
   }
 });
 
-let date = null
-let dateString = null
 
 
 
-if(props.day != 99){
-    date = new Date(dataStore.getYear, dataStore.getMonthIndex, props.day)
-    dateString = date.toISOString().split('T')[0];
-}
+
+const date = computed( () => {
+    if(props.day != 99){
+        return new Date(dataStore.getYear, dataStore.getMonthIndex, props.day)
+    }
+})
+
+
+const dateString = computed(() => {
+  if (!date.value) return null;
+  const year = date.value.getFullYear();
+  let month = date.value.getMonth() + 1;
+  let day = date.value.getDate();
+  if (month < 10) month = `0${month}`;
+  if (day < 10) day = `0${day}`;
+  return `${year}-${month}-${day}`;
+});
 
 function handleSetDate(){
     dataStore.setDate(date)
 }
 
 function deleteEvent(event){
-    console.log(event)
     const currentEvents = eventsStore.events[dateString]
     let modifiedEvents = currentEvents.filter(ev => ev != event)
     eventsStore.events[dateString] = modifiedEvents

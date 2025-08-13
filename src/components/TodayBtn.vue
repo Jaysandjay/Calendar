@@ -7,7 +7,7 @@ const dateStore = useDateDataStore()
     <v-btn 
     class="mx-auto my-5 bg-primary" 
     height="50" 
-    width="350"
+    width="450"
     @click=" () => dateStore.setDate(dateStore.getToday)"
     >
         Jump to Today
