@@ -19,7 +19,87 @@ export const useEventsStore = defineStore('events', {
           class: "Advanced Front-End Programming",
           color: 'yellow',
           event: "Assignment 3"
-        }
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
+        {
+          class: "Advanced Front-End Programming",
+          color: 'yellow',
+          event: "Assignment 3"
+        },
       ]
       },
     }

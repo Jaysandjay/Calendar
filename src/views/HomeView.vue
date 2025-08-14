@@ -8,7 +8,7 @@ import SideBar from '@/components/SideBar.vue';
   <div class="container">
     <SideBar/>
 
-    <main>
+    <main class="pa-0 pt-5">
       <Calendar />
     </main>
   </div>

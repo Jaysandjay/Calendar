@@ -47,10 +47,22 @@ main {
   width: 100%;
 }
 
+.day-card-scroll {
+  overflow-y: auto;           /* vertical scroll */
+  max-height: 80%;            /* or adjust based on modal size */
+}
+
+.list-item,
+.v-list-item-content,
+.item-content {
+  min-width: 0;             /* prevents flex children from expanding card */
+  overflow: hidden;
+}
+
 .scrollable-list {
-  max-height: 100px;  
-  overflow-y: auto;    
-  border: 1px solid lightgray;
+  min-width: 0;
+  max-height: 100px;
+  overflow-y: auto;
 }
 
 .scrollable-list::-webkit-scrollbar {
@@ -72,6 +84,7 @@ main {
   min-height: 20px !important;
 }
 
+
 .dayCard{
   background-color: var(--mainColor) !important;
   cursor: pointer;
@@ -90,11 +103,11 @@ main {
   min-width: 250px
 }
 
-.classes-modal{
+.classes-modal, .dayCard-modal{
   padding: 5px;
   min-height: 40%;
   width: 30%;
-
+  max-height: 45%;
 }
 
 .modal-overlay {
@@ -112,15 +125,18 @@ main {
   max-height: 350px;
   display: block;
 }
-  .side-bar{
-    width: 20vw;
-  }
+
+.side-bar{
+  width: 20vw;
+}
 
 .classListItem{
   overflow: visible !important;
   text-overflow: unset !important;
   white-space: nowrap !important;
 }
+
+
 
 a,
 .green {

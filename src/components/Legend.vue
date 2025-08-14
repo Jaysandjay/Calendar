@@ -24,7 +24,10 @@ function handleDelete(classInfo){
     <v-list density="compact" style="min-width: max-content;" >
       <v-list-subheader>Classes</v-list-subheader>
 
-      <v-list-item v-for="(item, index) in classesStore.items" :key="index" color="primary" class="classListItem">
+      <v-list-item v-for="(item, index) in classesStore.items" 
+      :key="index" color="primary" 
+      class="classListItem"
+      >
         <template v-slot:prepend>
           <v-icon :style="{ color: item.color }" icon="mdi-circle"></v-icon>
         </template>
