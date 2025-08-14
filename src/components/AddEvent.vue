@@ -63,7 +63,7 @@ function addItem() {
 </script>
 
 <template>
-  <v-sheet class="mx-auto my-5" width="450">
+  <v-sheet class="mx-auto my-5" style="width: 98%;">
     <v-form ref="formRef" @submit.prevent="addItem">
       <v-text-field 
       v-model="event" 

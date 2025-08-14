@@ -19,11 +19,12 @@ function handleDelete(classInfo){
 </script>
 
 <template>
-  <v-card class="mx-auto d-flex flex-column align-left overflow-auto" min-width="450" max-height="350">
-    <v-list density="compact">
+  <v-card class="mx-auto d-flex flex-column align-left overflow-auto legend " >
+    <div class="overflow-x-scroll" style="white-space: nowrap;">
+    <v-list density="compact" style="min-width: max-content;" >
       <v-list-subheader>Classes</v-list-subheader>
 
-      <v-list-item v-for="(item, index) in classesStore.items" :key="index" color="primary">
+      <v-list-item v-for="(item, index) in classesStore.items" :key="index" color="primary" class="classListItem">
         <template v-slot:prepend>
           <v-icon :style="{ color: item.color }" icon="mdi-circle"></v-icon>
         </template>
@@ -36,6 +37,7 @@ function handleDelete(classInfo){
 
       </v-list-item>
     </v-list>
+    </div >
     <ModifyClassesBtn v-if="!hasDelete"/>
   </v-card>
 </template>
