@@ -40,11 +40,28 @@ main {
   margin-left: 3px;
 }
 
-.seven-columns {
+/* .seven-columns {
   box-sizing: border-box;
   display: grid !important;
   grid-template-columns: repeat(7, 1fr);
   width: 100%;
+} */
+
+.day-label {
+  font-weight: bold;
+  text-align: center;
+  padding: 4px 0;
+}
+
+.seven-columns {
+  display: grid !important;
+  justify-items: center;
+  grid-template-columns: repeat(7, 1fr); /* 7 equal columns */
+  width: 100%;
+  gap: 4px;                  /* optional spacing between days */
+  box-sizing: border-box;
+  overflow-x: auto;           /* allows horizontal scroll on very small screens */
+  -webkit-overflow-scrolling: touch; /* smooth scroll on mobile */
 }
 
 .day-card-scroll {
@@ -98,10 +115,10 @@ main {
 .activeDay {
   opacity: 50%;
 }
-
+/* 
 .day-label{
   min-width: 250px
-}
+} */
 
 .classes-modal, .dayCard-modal{
   padding: 5px;
@@ -159,18 +176,7 @@ a,
   }
 
 @media (min-width: 1024px) and (max-width: 2000px) {
-  body{
-    background-color: red;
-  }
 
 
-.dayCard{
-
-}
-
-.dayPlaceholder{
-  cursor: auto;
-  opacity: 0.5;
-}
 }
 }

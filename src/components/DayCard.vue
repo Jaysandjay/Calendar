@@ -51,6 +51,7 @@ function showModal(){
 
 <template>
     <v-card 
+    style="width: 100%;"
     class="mx-2 my-0 pa-0 d-flex flex-column align-left overflow-auto"
     :class="[day != 99 ? 'dayCard' : 'dayPlaceholder', props.day == dataStore.selectedDate.getDate() && 'activeDay']"
     elevation="16"
