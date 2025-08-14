@@ -3,15 +3,17 @@ import { ref, computed } from 'vue'
 import { useClassesStore } from '../stores/classesStore'
 import { useEventsStore } from '../stores/eventsStore'
 import { useDateDataStore } from '@/stores/dateData'
+import MiniCalendar from './MiniCalendar.vue'
 
 const eventsStore = useEventsStore()
 const classesStore = useClassesStore()
 const dateStore = useDateDataStore()
 const event = ref('')
 const selectedClass = ref()
+
+
 const dueDate = computed({
-  get(){return dateToString(dateStore.selectedDate)},
-  set(date){dateStore.setDate(unformatDate(date))}
+  get(){return dateToString(dateStore.selectedDate)}
 })
 const formRef = ref(null)
 
@@ -31,11 +33,6 @@ function dateToString(date){
   return formatedDate
 }
 
-function unformatDate(date){
-  let split = date.split('-')
-  let selectedDate = new Date(split[0], split[1] - 1, split[2])
-  return selectedDate
-}
 
 function clearInput() {
   event.value = ''
@@ -58,7 +55,7 @@ function addItem() {
     color: classesStore.getColor(selectedClass.value),
     event: event.value
   }
-  eventsStore.addEvent(dueDate.value,newEvent)
+  eventsStore.addEvent(dueDate.value, newEvent)
   clearInput()
 }
 
@@ -83,15 +80,8 @@ function addItem() {
         required
       ></v-select>
 
-      <v-text-field
-        class="my-5"
-        v-model="dueDate"
-        label="Due Date"
-        type="date"
-        variant="outlined"
-        :rules="[(v) => !!v || 'Date is required']"
-        required
-      />
+      <MiniCalendar title="Due Date"/>
+      
 
       <v-btn class="mt-2" type="submit" block>Submit</v-btn>
     </v-form>

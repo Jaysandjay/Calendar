@@ -13,16 +13,11 @@ const props = defineProps({
   }
 });
 
-
-
-
-
 const date = computed( () => {
     if(props.day != 99){
         return new Date(dataStore.getYear, dataStore.getMonthIndex, props.day)
     }
 })
-
 
 const dateString = computed(() => {
   if (!date.value) return null;
