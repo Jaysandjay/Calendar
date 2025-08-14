@@ -35,14 +35,11 @@ function handleSetDate(){
     dataStore.setDate(date)
 }
 
-function deleteEvent(event){
-    const currentEvents = eventsStore.events[dateString]
-    let modifiedEvents = currentEvents.filter(ev => ev != event)
-    eventsStore.events[dateString] = modifiedEvents
-}
 
 function showModal(){
-    isShowing.value = true
+    if(eventsStore.events[dateString.value]){
+        isShowing.value = true
+    }
 }
 
 
@@ -76,7 +73,6 @@ function showModal(){
                         <v-list-item-value class="text-subtitle-2 " :style="{color: item.color}">{{ item.event }}</v-list-item-value>
                     </v-list-item-content>
 
-                     <v-icon icon="mdi-close px-5" @click="()=>deleteEvent(item)"></v-icon>
                 </v-list-item>
             </v-list>
         </div>
