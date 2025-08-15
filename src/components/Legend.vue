@@ -17,7 +17,7 @@ function handleDelete(classInfo) {
 </script>
 
 <template>
-  <v-card class="mx-auto d-flex flex-column align-left overflow-auto legend ">
+  <v-card class="mx-auto d-flex flex-column align-left overflow-auto legend">
     <div>
       <v-list density="compact" style="min-width: max-content">
         <v-list-subheader>Classes</v-list-subheader>

@@ -118,10 +118,6 @@ main {
 .activeDay {
   opacity: 50%;
 }
-/* 
-.day-label{
-  min-width: 250px
-} */
 
 .classes-modal,
 .dayCard-modal {

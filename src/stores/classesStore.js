@@ -4,7 +4,7 @@ export const useClassesStore = defineStore('classes', {
   state: () => {
     return {
       items: [
-        { class: 'Advanced Front-End ProgrammingAdvanced Front-End ProgrammingAdvanced Front-End ProgrammingAdvanced Front-End ProgrammingAdvanced Front-End ProgrammingAdvanced Front-End ProgrammingAdvanced Front-End ProgrammingAdvanced Front-End ProgrammingAdvanced Front-End ProgrammingAdvanced Front-End Programming', color: 'yellow' },
+        { class: 'Advanced Front-End Programming', color: 'yellow' },
         { class: 'Database Programming', color: 'blue' },
         { class: 'Fundamentals Numeric Computing', color: 'orange' },
         { class: 'Object Oriented Programming', color: 'green' },
