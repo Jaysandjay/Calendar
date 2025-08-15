@@ -17,8 +17,8 @@ function handleDelete(classInfo) {
 </script>
 
 <template>
-  <v-card class="mx-auto d-flex flex-column align-left overflow-auto legend">
-    <div class="overflow-x-scroll" style="white-space: nowrap">
+  <v-card class="mx-auto d-flex flex-column align-left overflow-auto legend ">
+    <div>
       <v-list density="compact" style="min-width: max-content">
         <v-list-subheader>Classes</v-list-subheader>
 
@@ -29,18 +29,15 @@ function handleDelete(classInfo) {
           class="classListItem"
         >
           <template v-slot:prepend>
-            <v-icon :style="{ color: item.color }" icon="mdi-circle"></v-icon>
-          </template>
-
-          <v-list-item-title>{{ item.class }}</v-list-item-title>
-
-          <template v-slot:append>
             <v-icon
               v-if="hasDelete"
               icon="mdi-close px-5"
               @click="() => handleDelete(item)"
             ></v-icon>
+            <v-icon :style="{ color: item.color }" icon="mdi-circle"></v-icon>
           </template>
+
+          <v-list-item-title>{{ item.class }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </div>

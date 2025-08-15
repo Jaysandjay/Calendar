@@ -142,9 +142,13 @@ main {
 }
 
 .legend {
-  min-width: 98%;
+  width: 98%;
   max-height: 350px;
   display: block;
+  flex: 0 0 auto;
+  pointer-events: auto;
+  overflow-x: scroll;
+  white-space: nowrap;
 }
 
 .side-bar {
