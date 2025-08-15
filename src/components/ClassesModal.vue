@@ -28,11 +28,14 @@ function handleClose() {
 }
 
 function addClass() {
-  const newClass = {
-    class: className.value,
-    color: selectedColor.value,
+  if (className.value != '') {
+    const newClass = {
+      class: className.value,
+      color: selectedColor.value,
+    }
+    classesStore.addClass(newClass)
+    className.value = ''
   }
-  classesStore.addClass(newClass)
 }
 </script>
 
