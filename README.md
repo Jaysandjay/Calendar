@@ -1,6 +1,9 @@
-# calendar
+# 📅 School Calendar
 
-This template should help get you started developing with Vue 3 in Vite.
+I created this simplified calendar to keep track of assignments for my classes while attending **Humber Polytechnic College**.  
+I decided to build it using the **Vue** framework along with **Vuetify** so I could learn and gain hands-on experience working with modern web technologies.
+
+I first tried to implement VCalendar - a calendar a date picker plugin for Vue.js.
 
 ## Recommended IDE Setup
 
