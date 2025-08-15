@@ -14,20 +14,18 @@ const props = defineProps({
 const icon = computed(() => (props.direction === 'prev' ? 'mdi-chevron-left' : 'mdi-chevron-right'))
 
 function moveMonth() {
-  if (props.direction === 'prev') {
-    dateStore.setDate(
-      new Date(dateStore.selectedDate.getFullYear(), dateStore.selectedDate.getMonth() - 1, 1),
-    )
-  } else if (props.direction === 'next') {
-    dateStore.setDate(
-      new Date(dateStore.selectedDate.getFullYear(), dateStore.selectedDate.getMonth() + 1, 1),
-    )
-  }
+  const current = dateStore.selectedDate
+  const year = current.getFullYear()
+  const month = current.getMonth() + (props.direction === 'prev' ? -1 : 1)
+
+  // Use Date constructor safely
+  const newDate = new Date(year, month, 1)
+  dateStore.setDate(newDate)
 }
 </script>
 
 <template>
   <v-btn class="mx-5" @click="moveMonth">
-    <v-icon>{{ icon }}</v-icon>
+    <v-icon :icon="icon"></v-icon>
   </v-btn>
 </template>

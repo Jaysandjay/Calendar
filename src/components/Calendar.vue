@@ -10,6 +10,8 @@ const dateStore = useDateDataStore()
   <v-container fluid class="pa-0 ma-0">
     <MonthNavigation />
     <DayLabels />
+
+    
     <v-row
       class="seven-column my-5 pa-0 justify-space-around"
       v-for="(week, index) in dateStore.getWeeks"

@@ -3,7 +3,7 @@
   --mainColor: #54B6B2;
   --secondary: #387976;
   --tertiary: #8DCECB ;
-  --quat:  #1C3C3B
+  --quat:  #1C3C3B;
 
 }
 
@@ -57,12 +57,6 @@ main {
   margin-left: 3px;
 }
 
-/* .seven-columns {
-  box-sizing: border-box;
-  display: grid !important;
-  grid-template-columns: repeat(7, 1fr);
-  width: 100%;
-} */
 
 .day-label {
   font-weight: bold;
@@ -75,6 +69,7 @@ main {
   justify-items: center;
   grid-template-columns: repeat(7, 1fr); /* 7 equal columns */
   width: 100%;
+  min-width: 700px;
   gap: 4px; /* optional spacing between days */
   box-sizing: border-box;
   overflow-x: auto; /* allows horizontal scroll on very small screens */
@@ -97,6 +92,9 @@ main {
   min-width: 0;
   max-height: 100px;
   overflow-y: auto;
+
+  scrollbar-width: thin;        /* Firefox */
+  scrollbar-color: gray lightgray; /* thumb color, track color */
 }
 
 .scrollable-list::-webkit-scrollbar {
@@ -111,6 +109,12 @@ main {
 .scrollable-list::-webkit-scrollbar-thumb {
   background-color: gray;
   border-radius: 4px;
+}
+
+.week-row-scroll {
+  overflow-x: auto;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .list-item {
@@ -157,7 +161,7 @@ main {
   display: block;
   flex: 0 0 auto;
   pointer-events: auto;
-  overflow-x: scroll;
+  overflow-x: auto;
   white-space: nowrap;
 }
 

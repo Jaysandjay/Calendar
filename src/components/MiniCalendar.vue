@@ -13,10 +13,12 @@ const dateStore = useDateDataStore()
 
 const dueDate = computed({
   get() {
-    return dateToString(dateStore.selectedDate)
+    return dateToString(dateStore.selectedDate) // string YYYY-MM-DD
   },
-  set(date) {
-    dateStore.setDate(unformatDate(date))
+  set(dateString) {
+    const split = dateString.split('-')
+    const newDate = new Date(split[0], split[1] - 1, split[2])
+    dateStore.setDate(newDate)
   },
 })
 
@@ -35,11 +37,6 @@ function dateToString(date) {
   return formatedDate
 }
 
-function unformatDate(date) {
-  let split = date.split('-')
-  let selectedDate = new Date(split[0], split[1] - 1, split[2])
-  return selectedDate
-}
 </script>
 
 <template>
