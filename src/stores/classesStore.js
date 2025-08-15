@@ -24,14 +24,15 @@ export const useClassesStore = defineStore('classes', {
     },
   },
   actions: {
-    addClass(newClass){
+    addClass(newClass) {
       this.items.push(newClass)
     },
-    deleteClass(classInfo){
+    deleteClass(classInfo) {
       console.log(classInfo)
-      let updatedClasses = this.items.filter((c) => !(c.class == classInfo.class && c.color == classInfo.color))
+      let updatedClasses = this.items.filter(
+        (c) => !(c.class == classInfo.class && c.color == classInfo.color),
+      )
       this.items = updatedClasses
-    }
-    
-  }
+    },
+  },
 })

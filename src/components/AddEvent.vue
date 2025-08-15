@@ -11,28 +11,27 @@ const dateStore = useDateDataStore()
 const event = ref('')
 const selectedClass = ref()
 
-
 const dueDate = computed({
-  get(){return dateToString(dateStore.selectedDate)}
+  get() {
+    return dateToString(dateStore.selectedDate)
+  },
 })
 const formRef = ref(null)
 
-
-function dateToString(date){
-  console.log(typeof(date))
-  let year = (date.getFullYear())
-  let month = (date.getMonth() + 1)
-  let day = (date.getDate())
-  if(month < 10){
+function dateToString(date) {
+  console.log(typeof date)
+  let year = date.getFullYear()
+  let month = date.getMonth() + 1
+  let day = date.getDate()
+  if (month < 10) {
     month = `0${month}`
   }
-  if(day < 10){
+  if (day < 10) {
     day = `0${day}`
   }
   let formatedDate = `${year}-${month}-${day}`
   return formatedDate
 }
-
 
 function clearInput() {
   event.value = ''
@@ -46,29 +45,26 @@ function clearInput() {
 }
 
 function addItem() {
-
   if (!formRef.value.validate()) {
     return
   }
   const newEvent = {
     class: selectedClass.value,
     color: classesStore.getColor(selectedClass.value),
-    event: event.value
+    event: event.value,
   }
   eventsStore.addEvent(dueDate.value, newEvent)
   clearInput()
 }
-
-
 </script>
 
 <template>
-  <v-sheet class="mx-auto my-5" style="width: 98%;">
+  <v-sheet class="mx-auto my-5" style="width: 98%">
     <v-form ref="formRef" @submit.prevent="addItem">
-      <v-text-field 
-      v-model="event" 
-      :rules="[(v) => !!v || 'Event is required']" 
-      label="Event"
+      <v-text-field
+        v-model="event"
+        :rules="[(v) => !!v || 'Event is required']"
+        label="Event"
       ></v-text-field>
 
       <v-select
@@ -80,8 +76,7 @@ function addItem() {
         required
       ></v-select>
 
-      <MiniCalendar title="Due Date"/>
-      
+      <MiniCalendar title="Due Date" />
 
       <v-btn class="mt-2" type="submit" block>Submit</v-btn>
     </v-form>

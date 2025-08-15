@@ -1,30 +1,34 @@
 @import './base.css';
-:root{
-  --mainColor: rgb(84, 182, 178)
+:root {
+  --mainColor: rgb(84, 182, 178);
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0px;
   width: 100%;
   height: 100%;
 }
 
-.mainColor{
+.mainColor {
   background-color: var(--mainColor);
 }
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 10fr; 
+  grid-template-columns: 1fr 10fr;
   gap: 1rem;
-  height: 100vh; 
+  height: 100vh;
 }
 
 aside {
   padding: 1rem;
   background-color: var(--mainColor);
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 10px -5px, rgba(0, 0, 0, 0.14) 0px 16px 24px 2px, rgba(0, 0, 0, 0.12) 0px 6px 30px 5px
+  box-shadow:
+    rgba(0, 0, 0, 0.2) 0px 8px 10px -5px,
+    rgba(0, 0, 0, 0.14) 0px 16px 24px 2px,
+    rgba(0, 0, 0, 0.12) 0px 6px 30px 5px;
 }
 
 main {
@@ -33,7 +37,7 @@ main {
   justify-content: center;
 }
 
-.toolbar-cal{
+.toolbar-cal {
   height: 100%;
   padding: 0;
   margin-top: 10px;
@@ -58,21 +62,21 @@ main {
   justify-items: center;
   grid-template-columns: repeat(7, 1fr); /* 7 equal columns */
   width: 100%;
-  gap: 4px;                  /* optional spacing between days */
+  gap: 4px; /* optional spacing between days */
   box-sizing: border-box;
-  overflow-x: auto;           /* allows horizontal scroll on very small screens */
+  overflow-x: auto; /* allows horizontal scroll on very small screens */
   -webkit-overflow-scrolling: touch; /* smooth scroll on mobile */
 }
 
 .day-card-scroll {
-  overflow-y: auto;           /* vertical scroll */
-  max-height: 80%;            /* or adjust based on modal size */
+  overflow-y: auto; /* vertical scroll */
+  max-height: 80%; /* or adjust based on modal size */
 }
 
 .list-item,
 .v-list-item-content,
 .item-content {
-  min-width: 0;             /* prevents flex children from expanding card */
+  min-width: 0; /* prevents flex children from expanding card */
   overflow: hidden;
 }
 
@@ -96,18 +100,17 @@ main {
   border-radius: 4px;
 }
 
-.list-item{
+.list-item {
   height: 20px !important;
   min-height: 20px !important;
 }
 
-
-.dayCard{
+.dayCard {
   background-color: var(--mainColor) !important;
   cursor: pointer;
 }
 
-.dayPlaceholder{
+.dayPlaceholder {
   cursor: auto;
   opacity: 0.5;
 }
@@ -120,7 +123,8 @@ main {
   min-width: 250px
 } */
 
-.classes-modal, .dayCard-modal{
+.classes-modal,
+.dayCard-modal {
   padding: 5px;
   min-height: 40%;
   width: 30%;
@@ -137,23 +141,21 @@ main {
   align-items: center;
 }
 
-.legend{
+.legend {
   min-width: 98%;
   max-height: 350px;
   display: block;
 }
 
-.side-bar{
+.side-bar {
   width: 20vw;
 }
 
-.classListItem{
+.classListItem {
   overflow: visible !important;
   text-overflow: unset !important;
   white-space: nowrap !important;
 }
-
-
 
 a,
 .green {
@@ -175,8 +177,6 @@ a,
     place-items: center;
   }
 
-@media (min-width: 1024px) and (max-width: 2000px) {
-
-
-}
+  @media (min-width: 1024px) and (max-width: 2000px) {
+  }
 }

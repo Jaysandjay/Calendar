@@ -7,11 +7,11 @@ import ChangeColor from '@/components/ChangeColor.vue'
 </script>
 
 <template>
-    <aside class="side-bar">
-      <YearLabel/>
-      <TodayBtn/>
-      <Legend />
-      <AddEvent />
-      <ChangeColor/>
-    </aside>
+  <aside class="side-bar">
+    <YearLabel />
+    <TodayBtn />
+    <Legend />
+    <AddEvent />
+    <ChangeColor />
+  </aside>
 </template>

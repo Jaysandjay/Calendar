@@ -1,7 +1,7 @@
 <script setup>
-import { computed, defineProps, defineEmits } from 'vue';
-import { useDateDataStore } from '@/stores/dateData';
-import { useEventsStore } from '@/stores/eventsStore';
+import { computed, defineProps, defineEmits } from 'vue'
+import { useDateDataStore } from '@/stores/dateData'
+import { useEventsStore } from '@/stores/eventsStore'
 
 const dataStore = useDateDataStore()
 const eventsStore = useEventsStore()
@@ -12,85 +12,77 @@ const props = defineProps({
   day: {
     type: Number,
     required: true,
-  }
-});
+  },
+})
 
-const date = computed( () => {
-    if(props.day != 99){
-        return new Date(dataStore.getYear, dataStore.getMonthIndex, props.day)
-    }
+const date = computed(() => {
+  if (props.day != 99) {
+    return new Date(dataStore.getYear, dataStore.getMonthIndex, props.day)
+  }
 })
 
 const dateString = computed(() => {
-  if (!date.value) return null;
-  const year = date.value.getFullYear();
-  let month = date.value.getMonth() + 1;
-  let day = date.value.getDate();
-  if (month < 10) month = `0${month}`;
-  if (day < 10) day = `0${day}`;
-  return `${year}-${month}-${day}`;
-});
+  if (!date.value) return null
+  const year = date.value.getFullYear()
+  let month = date.value.getMonth() + 1
+  let day = date.value.getDate()
+  if (month < 10) month = `0${month}`
+  if (day < 10) day = `0${day}`
+  return `${year}-${month}-${day}`
+})
 
-
-
-function deleteEvent(event){
-    console.log(dateString)
-    console.log(dateString.value)
-    console.log(event)       
-    console.log(eventsStore.events[dateString])
-    const currentEvents = eventsStore.events[dateString.value]
-    let modifiedEvents = currentEvents.filter(ev => ev != event)
-    eventsStore.events[dateString.value] = modifiedEvents
+function deleteEvent(event) {
+  console.log(dateString)
+  console.log(dateString.value)
+  console.log(event)
+  console.log(eventsStore.events[dateString])
+  const currentEvents = eventsStore.events[dateString.value]
+  let modifiedEvents = currentEvents.filter((ev) => ev != event)
+  eventsStore.events[dateString.value] = modifiedEvents
 }
 
-function handleClose(){
-    emit('close')
+function handleClose() {
+  emit('close')
 }
-
-
-
 </script>
 
 <template>
-    <div class="modal-overlay">
-        
-        <v-card 
-        class="dayCard-modal d-flex flex-column pa-5">
-            <v-icon  
-            class="position-absolute" 
-            style="top: 8px; right: 8px; cursor: pointer;"
-            icon="mdi-close px-5" 
-            @click="handleClose"
-            ></v-icon>
+  <div class="modal-overlay">
+    <v-card class="dayCard-modal d-flex flex-column pa-5">
+      <v-icon
+        class="position-absolute"
+        style="top: 8px; right: 8px; cursor: pointer"
+        icon="mdi-close px-5"
+        @click="handleClose"
+      ></v-icon>
 
-            <v-card-title class="fit-content py-0 ">
-                {{ day != 99 ? day: null }}
-            </v-card-title>
-    
-            <div class="day-card-scroll" style="white-space: nowrap; max-width: 100%;">
-                <v-list 
-                dense 
-                class="bg-transparent ma-1 pa-0 scrollable-list"
-                style="max-height: 98% !important;"  
-                >
-                    <v-list-item 
-                    dense 
-                    v-for="(item, index) in eventsStore.events[dateString]" 
-                    :key="index" 
-                    class="list-item ma-2"
-                    >
-                        <v-icon :style="{ color: item.color }" size="12" icon="mdi-circle mx-2"></v-icon>
-                        <v-list-item-content style="min-width: 0;">
-                            <v-list-item-value class="text-subtitle-2 " :style="{color: item.color}">{{ item.event }}</v-list-item-value>
-                        </v-list-item-content>
-    
-                         <v-icon icon="mdi-close px-5" @click="()=>deleteEvent(item)"></v-icon>
-                    </v-list-item>
-                </v-list>
-            </div>
-        </v-card>
-    </div>
-    
-    
-    
+      <v-card-title class="fit-content py-0">
+        {{ day != 99 ? day : null }}
+      </v-card-title>
+
+      <div class="day-card-scroll" style="white-space: nowrap; max-width: 100%">
+        <v-list
+          dense
+          class="bg-transparent ma-1 pa-0 scrollable-list"
+          style="max-height: 98% !important"
+        >
+          <v-list-item
+            dense
+            v-for="(item, index) in eventsStore.events[dateString]"
+            :key="index"
+            class="list-item ma-2"
+          >
+            <v-icon :style="{ color: item.color }" size="12" icon="mdi-circle mx-2"></v-icon>
+            <v-list-item-content style="min-width: 0">
+              <v-list-item-value class="text-subtitle-2" :style="{ color: item.color }">{{
+                item.event
+              }}</v-list-item-value>
+            </v-list-item-content>
+
+            <v-icon icon="mdi-close px-5" @click="() => deleteEvent(item)"></v-icon>
+          </v-list-item>
+        </v-list>
+      </div>
+    </v-card>
+  </div>
 </template>
