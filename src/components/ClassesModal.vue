@@ -46,7 +46,7 @@ function addClass() {
         @click="handleClose"
       ></v-icon>
 
-      <Legend :hasDelete="true" />
+      <Legend class="mt-5" :hasDelete="true" />
 
       <v-form ref="formRef" @submit.prevent="addClass" class="mt-5">
         <div class="d-flex">
@@ -59,14 +59,12 @@ function addClass() {
               style="width: 80px"
               outlined
             >
-              <!-- Customize how each item looks in the dropdown -->
               <template #item="{ item, props }">
                 <v-list-item v-bind="props">
                   <v-icon :style="{ color: item.value }" class="mr-2">mdi-circle</v-icon>
                 </v-list-item>
               </template>
 
-              <!-- Selected value -->
               <template #selection="{ item }">
                 <v-icon :style="{ color: item.value }">mdi-circle</v-icon>
               </template>
