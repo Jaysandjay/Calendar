@@ -5,7 +5,7 @@ const dateStore = useDateDataStore()
 
 <template>
   <v-btn
-    class="mx-auto my-5 bg-primary"
+    class="mx-auto my-5 secondary"
     height="50"
     style="width: 98%"
     @click="() => dateStore.setDate(dateStore.getToday)"

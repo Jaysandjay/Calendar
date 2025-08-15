@@ -7,7 +7,7 @@ const dateStore = useDateDataStore()
 </script>
 
 <template>
-  <v-toolbar class="d-flex align-center" style="height: 65px">
+  <v-toolbar class="d-flex align-center secondary" style="height: 65px">
     <div class="toolbar-cal">
       <MiniCalendar title="Date" />
     </div>

@@ -1,21 +1,62 @@
 <script setup>
 import { ref } from 'vue'
 
-const root = document.documentElement
-const mainColor = getComputedStyle(root).getPropertyValue('--mainColor').trim()
-const selectedColor = ref(mainColor)
-
 const colors = [
-  { label: 'Pink', value: 'rgb(232, 40, 165)' },
-  { label: 'Teal', value: 'rgb(84, 182, 178)' },
-  { label: 'Blue', value: 'rgb(0, 90, 255)' },
-  { label: 'Green', value: 'rgb(0, 128, 0)' },
-  { label: 'Orange', value: 'rgb(255, 165, 0)' },
-  { label: 'Purple', value: 'rgb(128, 0, 128)' },
+  {
+    label: 'Pink',
+    main: '#FF33AA',
+    second: '#CC2290',
+    third: '#FF99D9',
+    fourth: '#990066',
+  },
+  {
+    label: 'Teal',
+    main: '#54B6B2',
+    second: '#387976',
+    third: '#8DCECB',
+    fourth: '#1C3C3B',
+  },
+  {
+    label: 'Blue',
+    main: '#0066FF',
+    second: '#3399FF',
+    third: '#99CCFF',
+    fourth: '#003399',
+  },
+  {
+    label: 'Green',
+    main: '#00AA33',
+    second: '#33CC66',
+    third: '#99E6AA',
+    fourth: '#006622',
+  },
+  {
+    label: 'Orange',
+    main: '#FF7700',
+    second: '#FFAA33',
+    third: '#FFD699',
+    fourth: '#994400',
+  },
+  {
+    label: 'Purple',
+    main: '#9900CC',
+    second: '#CC33FF',
+    third: '#E699FF',
+    fourth: '#660099',
+  },
 ]
 
+const root = document.documentElement
+const mainColor = getComputedStyle(root).getPropertyValue('--mainColor').trim()
+const currentColor = colors.find((c) => c.main === mainColor)
+const selectedColor = ref(currentColor)
+
 function updateColor() {
-  document.documentElement.style.setProperty('--mainColor', selectedColor.value)
+  const color = selectedColor.value
+  document.documentElement.style.setProperty('--mainColor', color.main)
+  document.documentElement.style.setProperty('--secondary', color.second)
+  document.documentElement.style.setProperty('--tertiary', color.third)
+  document.documentElement.style.setProperty('--quat', color.fourth)
 }
 </script>
 
@@ -25,8 +66,8 @@ function updateColor() {
 
     <v-radio-group v-model="selectedColor" @change="updateColor">
       <v-row>
-        <v-col v-for="color in colors" :key="color.value" cols="6">
-          <v-radio :label="color.label" :value="color.value" :color="color.value" />
+        <v-col v-for="color in colors" :key="color.label" cols="6">
+          <v-radio :label="color.label" :value="color" :color="color.main" />
         </v-col>
       </v-row>
     </v-radio-group>

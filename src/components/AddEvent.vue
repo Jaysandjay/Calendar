@@ -78,7 +78,7 @@ function addItem() {
 
       <MiniCalendar title="Due Date" />
 
-      <v-btn class="mt-2" type="submit" block>Submit</v-btn>
+      <v-btn class="mt-2 rounded-0 secondary" type="submit" block>Submit</v-btn>
     </v-form>
   </v-sheet>
 </template>
