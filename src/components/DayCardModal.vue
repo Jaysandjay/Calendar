@@ -48,7 +48,7 @@ function handleClose() {
 
 <template>
   <div class="modal-overlay">
-    <v-card class="dayCard-modal d-flex flex-column pa-5">
+    <v-card class="dayCard-modal d-flex flex-column pa-5 quat">
       <v-icon
         class="position-absolute"
         style="top: 8px; right: 8px; cursor: pointer"
@@ -70,8 +70,9 @@ function handleClose() {
             dense
             v-for="(item, index) in eventsStore.events[dateString]"
             :key="index"
-            class="list-item ma-2"
+            class="list-item ma-2 mx-10"
           >
+            <v-icon icon="mdi-close px-5" @click="() => deleteEvent(item)"></v-icon>
             <v-icon :style="{ color: item.color }" size="12" icon="mdi-circle mx-2"></v-icon>
             <v-list-item-content style="min-width: 0">
               <v-list-item-value class="text-subtitle-2" :style="{ color: item.color }">{{
@@ -79,7 +80,6 @@ function handleClose() {
               }}</v-list-item-value>
             </v-list-item-content>
 
-            <v-icon icon="mdi-close px-5" @click="() => deleteEvent(item)"></v-icon>
           </v-list-item>
         </v-list>
       </div>
