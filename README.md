@@ -4,6 +4,11 @@
   <h3 align="center">📅</h3>
   <h3 align="center">School Calendar</h3>
 
+  <h3>Sneak Peak</h3>
+
+  <img width="1915" height="913" alt="image" src="https://github.com/user-attachments/assets/82af7bef-1006-434d-b511-973454287a72" />
+
+
   <p align="center">
     A simplified calendar to keep track of when assignments are due
   </p>
