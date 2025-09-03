@@ -4,7 +4,7 @@ import { ref, defineEmits } from 'vue'
 import { useClassesStore } from '@/stores/classesStore'
 
 const emit = defineEmits(['close'])
-const classesStore = useClassesStore()
+const classStore = useClassesStore()
 const selectedColor = ref('yellow')
 const className = ref('')
 
@@ -30,10 +30,10 @@ function handleClose() {
 function addClass() {
   if (className.value != '') {
     const newClass = {
-      class: className.value,
+      name: className.value,
       color: selectedColor.value,
     }
-    classesStore.addClass(newClass)
+    classStore.addClass(newClass)
     className.value = ''
   }
 }
@@ -49,7 +49,7 @@ function addClass() {
         @click="handleClose"
       ></v-icon>
 
-      <Legend class="mt-5" :hasDelete="true" />
+      <Legend class="mt-5" style="width: 100%;" :hasDelete="true" />
 
       <v-form ref="formRef" @submit.prevent="addClass" class="mt-5">
         <div class="d-flex">
@@ -77,6 +77,7 @@ function addClass() {
           <v-text-field
             v-model="className"
             :rules="[(v) => !!v || 'Class is required']"
+            :lazy-validation="true"
             label="Class Name"
           ></v-text-field>
         </div>

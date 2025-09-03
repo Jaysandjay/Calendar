@@ -122,6 +122,18 @@ main {
   min-height: 20px !important;
 }
 
+.complete-check{
+  width: 20px;
+  height: 15px;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.crossed{
+  text-decoration: line-through;
+}
+
 .dayCard {
   background-color: var(--mainColor) !important;
   cursor: pointer;
@@ -139,6 +151,7 @@ main {
 
 .classes-modal,
 .dayCard-modal {
+  background-color: var(--secondary) !important;
   padding: 5px;
   min-height: 40%;
   width: 30%;

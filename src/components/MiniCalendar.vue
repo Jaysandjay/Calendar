@@ -23,7 +23,6 @@ const dueDate = computed({
 })
 
 function dateToString(date) {
-  console.log(typeof date)
   let year = date.getFullYear()
   let month = date.getMonth() + 1
   let day = date.getDate()

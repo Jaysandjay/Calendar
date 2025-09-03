@@ -6,7 +6,7 @@ import { useDateDataStore } from '@/stores/dateData'
 import MiniCalendar from './MiniCalendar.vue'
 
 const eventsStore = useEventsStore()
-const classesStore = useClassesStore()
+const classStore = useClassesStore()
 const dateStore = useDateDataStore()
 const event = ref('')
 const selectedClass = ref()
@@ -19,7 +19,6 @@ const dueDate = computed({
 const formRef = ref(null)
 
 function dateToString(date) {
-  console.log(typeof date)
   let year = date.getFullYear()
   let month = date.getMonth() + 1
   let day = date.getDate()
@@ -50,7 +49,7 @@ function addItem() {
   }
   const newEvent = {
     class: selectedClass.value,
-    color: classesStore.getColor(selectedClass.value),
+    color: classStore.getColor(selectedClass.value),
     event: event.value,
   }
   eventsStore.addEvent(dueDate.value, newEvent)
@@ -70,7 +69,7 @@ function addItem() {
       <v-select
         class="my-5"
         v-model="selectedClass"
-        :items="classesStore.getClasses"
+        :items="classStore.getClassNames"
         :rules="[(v) => !!v || 'Item is required']"
         label="Class"
         required

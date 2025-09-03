@@ -1,11 +1,11 @@
 <script setup>
-import { computed, defineProps, defineEmits } from 'vue'
+import { computed, defineProps, defineEmits, ref } from 'vue'
 import { useDateDataStore } from '@/stores/dateData'
 import { useEventsStore } from '@/stores/eventsStore'
 
 const dataStore = useDateDataStore()
 const eventsStore = useEventsStore()
-
+const isChecked = ref()
 const emit = defineEmits(['close'])
 
 const props = defineProps({
@@ -32,13 +32,23 @@ const dateString = computed(() => {
 })
 
 function deleteEvent(event) {
-  console.log(dateString)
-  console.log(dateString.value)
-  console.log(event)
-  console.log(eventsStore.events[dateString])
+  // console.log(dateString)
+  // console.log(dateString.value)
+  // console.log(event)
+  // console.log(event.id)
+  // console.log(eventsStore.events[dateString])
   const currentEvents = eventsStore.events[dateString.value]
   let modifiedEvents = currentEvents.filter((ev) => ev != event)
   eventsStore.events[dateString.value] = modifiedEvents
+   eventsStore.deleteEvent(event.id)
+}
+
+function updateIsComplete(item, event){
+  const events = eventsStore.events[dateString.value]
+  const currentEvent = events.find(e => e.id == item.id)
+  currentEvent.isComplete = event.target.checked
+
+  eventsStore.updateIsChecked(item.id, event.target.checked)
 }
 
 function handleClose() {
@@ -73,9 +83,10 @@ function handleClose() {
             class="list-item ma-2 mx-10"
           >
             <v-icon icon="mdi-close px-5" @click="() => deleteEvent(item)"></v-icon>
+            <input  class="complete-check" type="checkbox" :checked="item.isComplete" @change="updateIsComplete(item, $event)"/>
             <v-icon :style="{ color: item.color }" size="12" icon="mdi-circle mx-2"></v-icon>
             <v-list-item-content style="min-width: 0">
-              <v-list-item-value class="text-subtitle-2" :style="{ color: item.color }">{{
+              <v-list-item-value class="text-subtitle-1" :style="{ color: item.color }">{{
                 item.event
               }}</v-list-item-value>
             </v-list-item-content>

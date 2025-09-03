@@ -9,10 +9,10 @@ const props = defineProps({
     default: false,
   },
 })
-const classesStore = useClassesStore()
+const classStore = useClassesStore()
 
 function handleDelete(classInfo) {
-  classesStore.deleteClass(classInfo)
+  classStore.deleteClass(classInfo)
 }
 </script>
 
@@ -23,7 +23,7 @@ function handleDelete(classInfo) {
         <v-list-subheader>Classes</v-list-subheader>
 
         <v-list-item
-          v-for="(item, index) in classesStore.items"
+          v-for="(item, index) in classStore.items"
           :key="index"
           color="primary"
           class="classListItem"
@@ -37,7 +37,7 @@ function handleDelete(classInfo) {
             <v-icon :style="{ color: item.color }" icon="mdi-circle"></v-icon>
           </template>
 
-          <v-list-item-title>{{ item.class }}</v-list-item-title>
+          <v-list-item-title>{{ item.name }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </div>

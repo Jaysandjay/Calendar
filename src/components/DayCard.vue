@@ -69,7 +69,7 @@ function showModal() {
         >
           <v-icon :style="{ color: item.color }" size="12" icon="mdi-circle mx-2"></v-icon>
           <v-list-item-content style="min-width: 0">
-            <v-list-item-value class="text-subtitle-2" :style="{ color: item.color }">{{
+            <v-list-item-value class="text-subtitle-2" :class="[item.isComplete && 'crossed']" :style="{ color: item.color }">{{
               item.event
             }}</v-list-item-value>
           </v-list-item-content>

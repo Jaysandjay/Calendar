@@ -3,7 +3,13 @@ import MonthNavigation from '../components/MonthNavigation.vue'
 import DayLabels from '../components/DayLabels.vue'
 import DayCard from './DayCard.vue'
 import { useDateDataStore } from '../stores/dateData.js'
+import { useEventsStore } from '@/stores/eventsStore'
+import { useClassesStore } from '@/stores/classesStore'
 const dateStore = useDateDataStore()
+const eventStore = useEventsStore()
+const classStore = useClassesStore()
+classStore.fill()
+eventStore.fill()
 </script>
 
 <template>
