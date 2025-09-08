@@ -48,8 +48,7 @@ function addItem() {
     return
   }
   const newEvent = {
-    class: selectedClass.value,
-    color: classStore.getColor(selectedClass.value),
+    classId: classStore.getClassId(selectedClass.value),
     event: event.value,
   }
   eventsStore.addEvent(dueDate.value, newEvent)

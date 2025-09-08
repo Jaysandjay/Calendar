@@ -1,54 +1,40 @@
 import { defineStore } from 'pinia'
-
+import { useUsersStore } from './usersStore'
 
 export const useEventsStore = defineStore('events', {
   state: () => {
     return {
       events: {
-        // ['2025-08-12']: [
-        //   {
-        //     class: 'Advanced Front-End Programming',
-        //     color: 'yellow',
-        //     event: 'Assignment 3',
-        //     isComplete: false
-        //   },
-        //   {
-        //     class: 'Advanced Front-End Programming',
-        //     color: 'yellow',
-        //     event: 'Assignment 4',
-        //     isComplete: true
-        //   },
-   
-        // ],
+      //   "2025-08-20": [
+      //   {
+      //       "id": 8,
+      //       "class": "Math",
+      //       "color": "red",
+      //       "event": "Lab 1",
+      //       "isComplete": false
+      //   },
+      //   {
+      //       "id": 9,
+      //       "class": "Math",
+      //       "color": "red",
+      //       "event": "Lab 2",
+      //       "isComplete": false
+      //   }
+      // ],
       },
     }
   },
   actions: {
     async fill() {
       console.log("Fetching events...")
+      const userStore = useUsersStore()
       try{
-        const res = await fetch('http://localhost:8000/api/events')
+        const res = await fetch(`http://localhost:8000/api/events/${userStore.user.id}`)
         if(!res.ok){
           throw new Error('Failed fetching events status ', res.status )
         }
         const data = await res.json()
-        const events = {}
-        for(const row of data.rows){
-
-          if(!events[row.date]){
-              events[row.date] = []
-          }
-
-          const event = {
-              id: row.id,
-              class: row.class_name,
-              color: row.color,
-              event: row.event,
-              isComplete: row.is_complete
-          }
-            events[row.date].push(event)
-        }
-        this.events = events
+        this.events = data
       }catch(err){
         console.error("Error fetching events", err)
         throw new Error("Error fetching events")
@@ -59,22 +45,17 @@ export const useEventsStore = defineStore('events', {
       try{
         const newEvent = {
           date: date,
-          className: event.class,
-          color: event.color,
           event: event.event,
-          isComplete: event.isComplete
+          class_id: event.classId
         }
+        console.log(newEvent)
         const res = await fetch('http://localhost:8000/api/events', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(newEvent)
         })
-        if (this.events[date]) {
-          this.events[date].push(event)
-          console.log(event)
-        } else {
-          this.events = { ...this.events, [date]: [event] }
-        }
+
+        await this.fill()
       }catch(err){
         console.error("Error creating new event", err)
         throw new Error("Error creating new Event")

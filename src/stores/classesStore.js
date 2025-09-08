@@ -1,20 +1,22 @@
 import { defineStore } from 'pinia'
+import { useUsersStore } from './usersStore'
+
 
 export const useClassesStore = defineStore('classes', {
   state: () => {
+    
     return {
-      items: [
-        // { class: 'Advanced Front-End Programming', color: 'yellow' },
-        // { class: 'Database Programming', color: 'blue' },
-        // { class: 'Fundamentals Numeric Computing', color: 'orange' },
-        // { class: 'Object Oriented Programming', color: 'green' },
-        // { class: 'Technical Workplace Writing Skills', color: 'purple' },
-      ],
+      items: [],
     }
   },
   getters: {
     getClassNames: (state) => {
-      return state.items.map((item) => item.name)
+      console.log("items: ", state.items)
+      if(state.items){
+        return state.items.map((item) => item.name)
+      }else{
+        return []
+      }
     },
     getColor: (state) => (className) => {
       const item = state.items.find((item) => {
@@ -22,26 +24,37 @@ export const useClassesStore = defineStore('classes', {
       })
       return item ? item.color : 'black'
     },
+    getClassId: (state) => (className) => {
+      const item = state.items.find((item) => item.name == className)
+      return item.id
+    }
   },
   actions: {
     async fill() {
+      const userStore = useUsersStore()
       console.log("Fetching Classes...")
-      try{
-        const res = await fetch('http://localhost:8000/api/classes')
-        if(!res.ok){
-          throw new Error('Failed fetching classes status ', res.status )
+      if(userStore.user.id){
+        console.log("User ID: ", userStore.user.id)
+        try{
+          const res = await fetch(`http://localhost:8000/api/classes/${userStore.user.id}`)
+          if(!res.ok){
+            throw new Error('Failed fetching classes status ', res.status )
+          }
+          const data = await res.json()
+          this.items = data
+        }catch(err){
+          console.error("Error fetching classes", err)
+          throw new Error("Error fetching classes")
         }
-        const data = await res.json()
-        console.log(data.rows)
-
-        this.items = data.rows
-      }catch(err){
-        console.error("Error fetching classes", err)
-        throw new Error("Error fetching classes")
+      }else{
+        console.log("ERROR: no user id")
       }
     },
     async addClass(newClass) {
       try{
+        const userStore = useUsersStore()
+        newClass = {...newClass, userId: userStore.user.id}
+        console.log(newClass)
         const res = await fetch('http://localhost:8000/api/classes',{
           headers: {
             'Content-Type': 'application/json'
@@ -49,7 +62,7 @@ export const useClassesStore = defineStore('classes', {
           method: 'POST',
           body: JSON.stringify(newClass)
         })
-        this.items.push(newClass)
+        this.fill()
       }catch(err){
         console.error("Error creating class", err)
         throw new Error("Error creating class")

@@ -3,6 +3,7 @@ export const useDateDataStore = defineStore('dateData', {
   state: () => {
     const now = new Date()
     const formatedDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    console.log(formatedDate)
     return {
       selectedDate: formatedDate,
     }
