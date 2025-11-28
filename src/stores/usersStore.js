@@ -7,6 +7,7 @@ export const useUsersStore = defineStore('users', {
   },
   actions:{
     async findUser(user){
+        console.log("UserStore findUser(user)")
         let res = await fetch('http://localhost:8000/api/users/login',{
             method: 'POST',
             headers: {
@@ -21,6 +22,7 @@ export const useUsersStore = defineStore('users', {
                 id: res.user.id
             }
         }
+        console.log("findUser:", JSON.stringify(user))
     },
 
     async createUser(user) {

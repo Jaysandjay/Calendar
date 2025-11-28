@@ -1,104 +1,52 @@
 import { defineStore } from 'pinia'
+import { computed } from 'vue'
+
 export const useDateDataStore = defineStore('dateData', {
   state: () => {
     const now = new Date()
-    const formatedDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-    console.log(formatedDate)
-    return {
-      selectedDate: formatedDate,
-    }
+    return { selectedDate: new Date(now.getFullYear(), now.getMonth(), now.getDate()) }
   },
   getters: {
-    getToday() {
+    getToday: (state) => {
       const now = new Date()
-      const formatedDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-      console.log(formatedDate)
-      return formatedDate
+      return new Date(now.getFullYear(), now.getMonth(), now.getDate())
     },
-    getMonth() {
+    getMonth: (state) => {
       const monthNames = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
+        'January','February','March','April','May','June',
+        'July','August','September','October','November','December'
       ]
-      return monthNames[this.selectedDate.getMonth()]
+      return monthNames[state.selectedDate.getMonth()]
     },
-    getMonthIndex() {
-      return this.selectedDate.getMonth()
+    getMonthIndex: (state) => state.selectedDate.getMonth(),
+    getYear: (state) => state.selectedDate.getFullYear(),
+    getDay: (state) => {
+      const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+      return dayNames[state.selectedDate.getDay()]
     },
-    getYear() {
-      return this.selectedDate.getFullYear()
-    },
-    getDay() {
-      const dayNames = [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-      ]
-      return dayNames[this.selectedDate.getDay()]
-    },
-    getNumOfDaysInMonth() {
-      const num = new Date(
-        this.selectedDate.getFullYear(),
-        this.selectedDate.getMonth() + 1,
-        0,
-      ).getDate()
-      let numArray = []
-      for (let i = 1; i <= num; i++) {
-        numArray.push(i)
-      }
-      return num
-    },
-    getFirstDayOfMonth() {
-      return new Date(this.selectedDate.getFullYear(), this.selectedDate.getMonth(), 1).getDay()
-    },
-    getWeeks() {
+    getNumOfDaysInMonth: (state) => new Date(state.selectedDate.getFullYear(), state.selectedDate.getMonth() + 1, 0).getDate(),
+    getFirstDayOfMonth: (state) => new Date(state.selectedDate.getFullYear(), state.selectedDate.getMonth(), 1).getDay(),
+    getWeeks: (state) => {
+      const weeks = { week1: [], week2: [], week3: [], week4: [], week5: [] }
       let day = 1
-      const weeks = {
-        week1: [],
-        week2: [],
-        week3: [],
-        week4: [],
-        week5: [],
-      }
+      const firstDay = new Date(state.selectedDate.getFullYear(), state.selectedDate.getMonth(), 1).getDay()
+      const numDays = new Date(state.selectedDate.getFullYear(), state.selectedDate.getMonth() + 1, 0).getDate()
 
-      for (let i = 0; i < this.getFirstDayOfMonth; i++) {
-        weeks.week1.push(99)
-      }
+      for (let i = 0; i < firstDay; i++) weeks.week1.push(99)
 
-      for (const num in weeks) {
-        while (weeks[num].length < 7) {
-          if (day <= this.getNumOfDaysInMonth) {
-            weeks[num].push(day)
-            day++
-          } else {
-            weeks[num].push(99)
-          }
+      for (const week in weeks) {
+        while (weeks[week].length < 7) {
+          if (day <= numDays) weeks[week].push(day++)
+          else weeks[week].push(99)
         }
       }
 
-      if (day <= this.getNumOfDaysInMonth) {
-        weeks['week6'] = []
-        for (let i = day; i <= this.getNumOfDaysInMonth; i++) {
-          weeks.week6.push(i)
-        }
-        while (weeks.week6.length < 7) {
-          weeks.week6.push(99)
-        }
+      if (day <= numDays) {
+        weeks.week6 = []
+        for (; day <= numDays; day++) weeks.week6.push(day)
+        while (weeks.week6.length < 7) weeks.week6.push(99)
       }
+
       return weeks
     },
   },
@@ -106,5 +54,12 @@ export const useDateDataStore = defineStore('dateData', {
     setDate(date) {
       this.selectedDate = date
     },
+    moveMonth(direction) {
+      const monthOffset = direction === 'prev' ? -1 : 1
+      const current = new Date(this.selectedDate)
+      const newDate = new Date(current.getFullYear(), current.getMonth() + monthOffset, 1)
+
+      this.setDate(newDate)
+      }
   },
 })

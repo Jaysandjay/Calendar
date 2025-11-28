@@ -32,7 +32,7 @@ const dateString = computed(() => {
 })
 
 function handleSetDate() {
-  dataStore.setDate(date)
+  dataStore.setDate(date.value)
 }
 
 function showModal() {
@@ -56,7 +56,7 @@ function showModal() {
     @dblclick="showModal"
   >
     <v-card-title class="fit-content py-0">
-      {{ day != 99 ? day : null }}
+      <!-- {{ day != 99 ? day : null }} -->
     </v-card-title>
 
     <div style="white-space: nowrap; max-width: 100%">
