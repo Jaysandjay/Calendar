@@ -86,10 +86,11 @@ const submit = async () =>{
             ></v-text-field>
             <v-btn class="mt-4 secondary" type="submit" block>Submit</v-btn>
             <v-btn class="mt-4 secondary" @click="createNew" block>Create New</v-btn>
-            <!-- <v-btn class="mt-4 secondary v-btn v-btn--block v-btn--flat v-theme--dark v-btn--border bg-surface-light v-btn--density-default rounded-lg v-btn--size-large v-btn--variant-flat text-none" >
-                <span class="v-btn__prepend"><i class="mdi-google mdi v-icon notranslate v-theme--dark v-icon--size-default" aria-hidden="true"></i></span>
-                <span class="v-btn__content" data-no-activator="">Google</span>
-            </v-btn> -->
+            <div
+              class="mt-4"
+            >
+              To register, please fill in the fields and click 'Create New'
+          </div>
             <span v-if="error" class="text-red">Please Try Again</span>
             
           </v-form>

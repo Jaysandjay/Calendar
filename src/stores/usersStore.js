@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { API_URL } from '../../config'
 
 
 export const useUsersStore = defineStore('users', {
@@ -7,8 +8,8 @@ export const useUsersStore = defineStore('users', {
   },
   actions:{
     async findUser(user){
-        console.log("UserStore findUser(user)")
-        let res = await fetch('http://localhost:8000/api/users/login',{
+        console.log(`UserStore findUser(${JSON.stringify(user)})`)
+        let res = await fetch(`${API_URL}/api/users/login/`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -26,7 +27,7 @@ export const useUsersStore = defineStore('users', {
     },
 
     async createUser(user) {
-        let res = await fetch('http://localhost:8000/api/users/',{
+        let res = await fetch(`${API_URL}/api/users/`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

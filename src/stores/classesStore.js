@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { useUsersStore } from './usersStore'
-
+import { API_URL } from '../../config'
 
 export const useClassesStore = defineStore('classes', {
   state: () => {
@@ -36,7 +36,7 @@ export const useClassesStore = defineStore('classes', {
       if(userStore.user.id){
         console.log("User ID: ", userStore.user.id)
         try{
-          const res = await fetch(`http://localhost:8000/api/classes/${userStore.user.id}`)
+          const res = await fetch(`${API_URL}/api/classes/${userStore.user.id}`)
           if(!res.ok){
             throw new Error('Failed fetching classes status ', res.status )
           }
@@ -55,7 +55,7 @@ export const useClassesStore = defineStore('classes', {
         const userStore = useUsersStore()
         newClass = {...newClass, userId: userStore.user.id}
         console.log(newClass)
-        const res = await fetch('http://localhost:8000/api/classes',{
+        const res = await fetch(`${API_URL}/api/classes`,{
           headers: {
             'Content-Type': 'application/json'
           },
@@ -70,7 +70,7 @@ export const useClassesStore = defineStore('classes', {
     },
     async deleteClass(classInfo) {
       try{
-        await fetch(`http://localhost:8000/api/classes/${classInfo.id}`,{
+        await fetch(`${API_URL}/api/classes/${classInfo.id}`,{
           method: 'DELETE'
         })
         let updatedClasses = this.items.filter(

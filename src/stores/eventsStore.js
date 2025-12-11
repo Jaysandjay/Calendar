@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { useUsersStore } from './usersStore'
+import { API_URL } from '../../config'
 
 export const useEventsStore = defineStore('events', {
   state: () => {
@@ -29,7 +30,7 @@ export const useEventsStore = defineStore('events', {
       console.log("Fetching events...")
       const userStore = useUsersStore()
       try{
-        const res = await fetch(`http://localhost:8000/api/events/${userStore.user.id}`)
+        const res = await fetch(`${API_URL}/api/events/${userStore.user.id}`)
         if(!res.ok){
           throw new Error('Failed fetching events status ', res.status )
         }
@@ -49,7 +50,7 @@ export const useEventsStore = defineStore('events', {
           class_id: event.classId
         }
         console.log(newEvent)
-        const res = await fetch('http://localhost:8000/api/events', {
+        const res = await fetch(`${API_URL}/api/events`, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(newEvent)
@@ -63,7 +64,7 @@ export const useEventsStore = defineStore('events', {
     },
     async deleteEvent(id){
       try{
-        const res = await fetch (`http://localhost:8000/api/events/${id}`,{
+        const res = await fetch (`${API_URL}/api/events/${id}`,{
           method: 'DELETE'
         })
         if(!res.ok){
@@ -76,7 +77,7 @@ export const useEventsStore = defineStore('events', {
     },
     async updateIsChecked(id, value){
       try{
-        const res = await fetch(`http://localhost:8000/api/events/update-completion/${id}`,{
+        const res = await fetch(`${API_URL}/api/events/update-completion/${id}`,{
           method: 'PUT',
           headers: {
             'Content-type': 'application/json'
