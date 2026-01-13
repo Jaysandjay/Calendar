@@ -1,5 +1,4 @@
 <script setup>
-import AuthTest from '@/components/AuthTest.vue';
 import Login from '@/components/Login.vue';
 </script>
 
