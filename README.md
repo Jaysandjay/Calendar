@@ -1,10 +1,9 @@
 <a id="readme-top"></a>
 <br />
 <div align="center">
-  <h3 align="center">📅</h3>
-  <h3 align="center">School Calendar</h3>
+  <img width="38" height="44" alt="image" src="https://github.com/user-attachments/assets/160334b3-aae4-417c-8d10-eb984d96093b" />
 
-  <h3>Sneak Peak</h3>
+  <h3 align="center">Task Calendar</h3>
 
   <img width="1915" height="913" alt="image" src="https://github.com/user-attachments/assets/82af7bef-1006-434d-b511-973454287a72" />
 
@@ -14,35 +13,21 @@
   </p>
 </div>
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
 
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 I created this simplified calendar to keep track of assignment due dates for my classes while attending **Humber Polytechnic College**.  
-I decided to build it using the **Vue** framework along with **Vuetify** so I could learn and gain hands-on experience working with modern web technologies.
+The application was built using the **Vue** framework with **Vuetify** to gain hands-on experience developing responsive and user-friendly interfaces.
+
+The backend is powered by **Node.js** with **Express**, providing RESTful API endpoints for managing assignments and related data.  
+A **PostgreSQL** database is used to persist calendar entries, ensuring reliable data storage and scalability.  
+This project allowed me to strengthen my understanding of full-stack development, API design, and database integration.
+
 
 [![Vue][Vue.js]][Vue-url]
+[![Pinia][Pinia]][Pinia-url]
+[![TypeScript][TypeScript]][TypeScript-url]
+[![PostgreSQL][PostgreSQL]][PostgreSQL-url]
+[![Express][Express]][Express-url]
 
 
 
@@ -51,44 +36,24 @@ I decided to build it using the **Vue** framework along with **Vuetify** so I co
 
 
 
+<!-- BADGES -->
+[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D
+[Vue-url]: https://vuejs.org/
+
+[Pinia]: https://img.shields.io/badge/Pinia-ffd859?style=for-the-badge&logo=pinia&logoColor=black
+[Pinia-url]: https://pinia.vuejs.org/
+
+[TypeScript]: https://img.shields.io/badge/TypeScript-3178c6?style=for-the-badge&logo=typescript&logoColor=white
+[TypeScript-url]: https://www.typescriptlang.org/
+
+[PostgreSQL]: https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white
+[PostgreSQL-url]: https://www.postgresql.org/
+
+[Express]: https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white
+[Express-url]: https://expressjs.com/
 
 
 
-
-
-
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
 
 
 
