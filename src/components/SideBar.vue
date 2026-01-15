@@ -8,7 +8,7 @@ import Logout from './Logout.vue'
 </script>
 
 <template>
-  <aside class="side-bar">
+  <aside>
     <Logout/>
     <YearLabel />
     <TodayBtn />

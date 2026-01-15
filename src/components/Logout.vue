@@ -13,7 +13,7 @@ function logout(){
 
 <template>
     <v-card style="width: 98%" class="d-flex justify-space-between align-center mb-5 pa-2 secondary">
-        <v-btn @click="logout">Log out</v-btn>
-        <div class="text-10">{{ userStore.user.email }}</div>
+        <v-btn class="mr-2" @click="logout">Log out</v-btn>
+        <div  class="text-truncate" style="max-width: 200px">{{ userStore.user.email }}</div>
     </v-card>
 </template>

@@ -64,10 +64,17 @@ function updateColor() {
   <v-sheet class="d-flex flex-column justify-center align-center pa-2">
     <v-title class="text-h6">Color Scheme</v-title>
 
-    <v-radio-group v-model="selectedColor" @change="updateColor">
-      <v-row>
+    <v-radio-group v-model="selectedColor" @change="updateColor" class="d-flex flex-wrap gap-1 justify-center">
+      <v-row :no-gutters="true">
         <v-col v-for="color in colors" :key="color.label" cols="6">
-          <v-radio :label="color.label" :value="color" :color="color.main" />
+          <v-radio 
+          :label="color.label" 
+          :value="color" 
+          :color="color.main" 
+          class="m-0 p-0 text-caption" 
+          density="compact"
+          
+          />
         </v-col>
       </v-row>
     </v-radio-group>
