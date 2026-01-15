@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { useUsersStore } from './usersStore'
 import { API_URL } from '../../config'
+import { useEventsStore } from './eventsStore'
 
 export const useClassesStore = defineStore('classes', {
   state: () => {
@@ -26,7 +27,7 @@ export const useClassesStore = defineStore('classes', {
     },
     getClassId: (state) => (className) => {
       const item = state.items.find((item) => item.name == className)
-      return item.id
+      return item ? item.id : null
     }
   },
   actions: {
@@ -62,7 +63,12 @@ export const useClassesStore = defineStore('classes', {
           method: 'POST',
           body: JSON.stringify(newClass)
         })
-        this.fill()
+        if (!res.ok) throw new Error("Failed to create class")
+        const createdClass = await res.json()
+        console.log("Created class", createdClass)
+        this.items.push(createdClass)
+        console.log("classes", this.items)
+        
       }catch(err){
         console.error("Error creating class", err)
         throw new Error("Error creating class")
@@ -73,10 +79,10 @@ export const useClassesStore = defineStore('classes', {
         await fetch(`${API_URL}/api/classes/${classInfo.id}`,{
           method: 'DELETE'
         })
-        let updatedClasses = this.items.filter(
-          (c) => !(c.class == classInfo.class && c.color == classInfo.color),
-        )
-        this.items = updatedClasses
+        this.items = this.items.filter(c => c.id !== classInfo.id)
+
+        const eventStore = useEventsStore()
+        await eventStore.fill()
       }catch(err){
         console.error(`Error deleting class with id: ${classInfo.id}`, err)
         throw new Error(`Error deleting class with id: ${classInfo.id}`)

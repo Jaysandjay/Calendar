@@ -1,26 +1,30 @@
 <script setup>
 import Legend from './Legend.vue'
-import { ref, defineEmits } from 'vue'
+import { ref, defineEmits, nextTick } from 'vue'
 import { useClassesStore } from '@/stores/classesStore'
 
 const emit = defineEmits(['close'])
 const classStore = useClassesStore()
 const selectedColor = ref('yellow')
 const className = ref('')
+const error = ref(false)
 
 const colors = [
   'yellow',
-  'blue',
+  'black',
+  'dimgray',
+  'slategray',
+  'darkslategray',
   'navy',
-  'teal',
-  'orange',
-  'green',
-  'lime',
-  'purple',
+  'darkolivegreen',
+  'olive',
+  'saddlebrown',
   'maroon',
-  'red',
-  'brown',
-  'fuchsia',
+  'darkred',
+  'goldenrod',
+  'darkgoldenrod',
+  'peru',
+  'tan',
 ]
 
 function handleClose() {
@@ -28,20 +32,24 @@ function handleClose() {
 }
 
 function addClass() {
-  if (className.value != '') {
+  error.value = false
+  if (className.value != ''.trim()) {
     const newClass = {
       name: className.value,
       color: selectedColor.value,
     }
     classStore.addClass(newClass)
     className.value = ''
+  }else {
+    error.value = true
   }
 }
 </script>
 
 <template>
-  <div class="modal-overlay">
-    <v-card class="classes-modal d-flex flex-column pa-5">
+  <div class="modal-overlay w-auto">
+    <v-card class="classes-modal d-flex flex-column pa-5 w-50">
+      <div class="mb-1">Modify Classes</div>
       <v-icon
         class="position-absolute"
         style="top: 8px; right: 8px; cursor: pointer"
@@ -49,9 +57,9 @@ function addClass() {
         @click="handleClose"
       ></v-icon>
 
-      <Legend class="mt-5" style="width: 100%;" :hasDelete="true" />
+      <Legend class="legendModal" style="width: 100%;" :hasDelete="true" />
 
-      <v-form ref="formRef" @submit.prevent="addClass" class="mt-5">
+      <v-form @submit.prevent="addClass" class="mt-5">
         <div class="d-flex">
           <div style="width: 80px">
             <v-select
@@ -76,11 +84,10 @@ function addClass() {
 
           <v-text-field
             v-model="className"
-            :rules="[(v) => !!v || 'Class is required']"
-            :lazy-validation="true"
             label="Class Name"
           ></v-text-field>
         </div>
+        <p v-if="error" class="text-red">Class is required</p>
 
         <v-btn class="mt-4" type="submit" block>Submit</v-btn>
       </v-form>

@@ -156,7 +156,7 @@ main {
   padding: 5px;
   min-height: 40%;
   width: 30%;
-  max-height: 60%;
+  max-height: 70%;
 }
 
 .modal-overlay {
@@ -171,13 +171,30 @@ main {
 
 .legend {
   width: 98%;
-  max-height: 350px;
+  max-height: 200px;
+  min-height: 100px;
   display: block;
-  flex: 0 0 auto;
+  flex: 1;
   pointer-events: auto;
   overflow-x: auto;
   white-space: nowrap;
+  margin-top: 5px;
+
 }
+
+/* .legendModal {
+  width: 98%;
+  max-height: 200px;
+  min-height: 100px;
+  display: block;
+  flex: 1;
+  pointer-events: auto;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-bottom: 5px;
+} */
+
+
 
 .classListItem {
   overflow: visible !important;

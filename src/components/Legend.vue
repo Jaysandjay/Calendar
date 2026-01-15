@@ -1,6 +1,7 @@
 <script setup>
 import { defineProps } from 'vue'
 import { useClassesStore } from '../stores/classesStore'
+import { useEventsStore } from '@/stores/eventsStore'
 import ModifyClassesBtn from './ModifyClassesBtn.vue'
 
 const props = defineProps({
@@ -11,23 +12,27 @@ const props = defineProps({
 })
 const classStore = useClassesStore()
 
-function handleDelete(classInfo) {
-  classStore.deleteClass(classInfo)
+async function handleDelete(classInfo) {
+  console.log("class to delete", classInfo)
+  await classStore.deleteClass(classInfo)
+  
 }
 </script>
 
 <template>
-  <v-card class="mx-auto d-flex flex-column align-left overflow-auto ">
-    <div class="legend">
-      <v-list density="compact" style="min-width: max-content">
+  <v-card class="mx-auto d-flex flex-column align-left">
+    <div class="legend" >
+      <v-list density="compact">
         <v-list-subheader>Classes</v-list-subheader>
-
+        
+        <p v-if="classStore.items.length === 0" class="ml-2">No classes</p>
         <v-list-item
-          v-for="(item, index) in classStore.items"
-          :key="index"
+          v-for="(item) in classStore.items"
+          :key="item.id"
           color="primary"
           class="classListItem"
         >
+
           <template v-slot:prepend>
             <v-icon
               v-if="hasDelete"
