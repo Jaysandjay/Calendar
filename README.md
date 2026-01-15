@@ -57,9 +57,9 @@ This project allowed me to strengthen my understanding of full-stack development
 ## Future Improvements
 
 Planned enhancements include:
--Implement Winston logging
--Enhance UI components
--Add details section for assignments
+- Implement Winston logging
+- Enhance UI components
+- Add details section for assignments
 
 
 
