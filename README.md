@@ -52,6 +52,15 @@ This project allowed me to strengthen my understanding of full-stack development
 [Express]: https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white
 [Express-url]: https://expressjs.com/
 
+---
+
+## Future Improvements
+
+Planned enhancements include:
+-Implement Winston logging
+-Enhance UI components
+-Add details section for assignments
+
 
 
 
