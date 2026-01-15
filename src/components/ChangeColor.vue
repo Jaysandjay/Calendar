@@ -31,13 +31,6 @@ const colors = [
     fourth: '#006622',
   },
   {
-    label: 'Orange',
-    main: '#FF7700',
-    second: '#FFAA33',
-    third: '#FFD699',
-    fourth: '#994400',
-  },
-  {
     label: 'Purple',
     main: '#9900CC',
     second: '#CC33FF',
