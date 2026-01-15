@@ -10,6 +10,8 @@ const router = useRouter()
 const email = ref('')
 const password = ref('')
 const error = ref(false)
+const existingUserError = ref(false)
+const showModal = ref(false)
 
 onBeforeMount( () => {
   if(userStore.user.id){
@@ -25,24 +27,42 @@ function isEmailValid(email){
 
 async function createNew() {
     error.value = false
-    
-    const user = {
-        email: email.value,
-        password: password.value
-    }
+    existingUserError.value = false
+
+    const user = { email: email.value, password: password.value }
+    console.log("Creating user:", user)
 
     await userStore.findUser(user)
+    console.log("After findUser:", userStore.user)
+
     if(userStore.user.id){
-        console.log(userStore.user)
-        router.push('/')
-    }else{
-        userStore.createUser(user)
-        router.push('/')
+        console.log("User exists already")
+        existingUserError.value = true
+    } else {
+        console.log("User does not exist, creating...")
+        await userStore.createUser(user)
+        console.log("After createUser:", userStore.user)
+        await userStore.findUser(user)
+        if(userStore.user.id){
+            console.log("Showing modal")
+            showModal.value = true
+        } else {
+            console.log("User creation failed")
+            error.value = true
+        }
     }
 }
 
+
+function continueToHome() {
+  showModal.value = false
+  router.push('/')
+}
+
+
 const submit = async () =>{
     error.value = false
+    existingUserError.value = false
     const user ={
         email: email.value,
         password: password.value
@@ -92,9 +112,25 @@ const submit = async () =>{
               To register, please fill in the fields and click 'Create New'
           </div>
             <span v-if="error" class="text-red">Please Try Again</span>
+            <span v-if="existingUserError" class="text-red">User already exists</span>
             
           </v-form>
         </v-sheet>
+
+
+        <v-dialog v-model="showModal" persistent max-width="400">
+          <v-card ref="modalRef" class="pa-6 text-center" style="border-radius: 16px; background-color: var(--secondary); color: white;" tabindex="0">
+            <v-card-title class="text-h5 justify-center">
+              Registration Successful!
+            </v-card-title>
+
+            <v-card-actions class="justify-center mt-6">
+              <v-btn color="primary" style="background-color: var(--quat);"  @click="continueToHome">
+                Continue
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
     </main>
     
 </template>
