@@ -68,24 +68,25 @@ main {
 .seven-columns {
   display: grid !important;
   justify-items: center;
-  grid-template-columns: repeat(7, 1fr); /* 7 equal columns */
+  grid-template-columns: repeat(7, 1fr); 
   width: 100%;
   min-width: 700px;
-  gap: 4px; /* optional spacing between days */
+  gap: 4px; 
   box-sizing: border-box;
-  overflow-x: auto; /* allows horizontal scroll on very small screens */
-  -webkit-overflow-scrolling: touch; /* smooth scroll on mobile */
+  overflow-x: auto; 
+  -webkit-overflow-scrolling: touch; 
 }
 
 .day-card-scroll {
-  overflow-y: auto; /* vertical scroll */
-  max-height: 80%; /* or adjust based on modal size */
+  overflow-y: auto; 
+  max-height: 250px;
+  background-color: rgb(66, 64, 64);
 }
 
 .list-item,
 .v-list-item-content,
 .item-content {
-  min-width: 0; /* prevents flex children from expanding card */
+  min-width: 0; 
   overflow: hidden;
 }
 
@@ -94,8 +95,8 @@ main {
   max-height: 100px;
   overflow-y: auto;
 
-  scrollbar-width: thin;        /* Firefox */
-  scrollbar-color: gray lightgray; /* thumb color, track color */
+  scrollbar-width: thin;        
+  scrollbar-color: gray lightgray; 
 }
 
 .scrollable-list::-webkit-scrollbar {

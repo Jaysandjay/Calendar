@@ -57,8 +57,9 @@ function handleClose() {
 </script>
 
 <template>
-  <div class="modal-overlay">
-    <v-card class="dayCard-modal d-flex flex-column pa-5 quat">
+  <div class="modal-overlay w-auto">
+    <v-card class="dayCard-modal d-flex flex-column pa-5 quat" >
+      <v-title class="mx-auto text-h6">Tasks</v-title>
       <v-icon
         class="position-absolute"
         style="top: 8px; right: 8px; cursor: pointer"
