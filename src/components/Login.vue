@@ -107,9 +107,18 @@ const submit = async () =>{
             <v-btn class="mt-4 secondary" type="submit" block>Submit</v-btn>
             <v-btn class="mt-4 secondary" @click="createNew" block>Create New</v-btn>
             <div
-              class="mt-4"
+              class="mt-4 flex flex-col"
             >
-              To register, please fill in the fields and click 'Create New'
+              <p>
+                To register, please fill in the fields and click 'Create New'
+              </p>
+            <br>
+              <p>
+                Just want to check out the app? Use the following:
+              </p>
+              <p>Email: test@gmail.com</p>
+              <p>Password: 123</p>
+                
           </div>
             <span v-if="error" class="text-red">Please Try Again</span>
             <span v-if="existingUserError" class="text-red">User already exists</span>
