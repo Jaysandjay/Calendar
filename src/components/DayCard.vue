@@ -52,8 +52,8 @@ function showModal() {
     ]"
     elevation="16"
     height="140"
-    @click="handleSetDate"
-    @dblclick="showModal"
+    @click="day !== 99 && handleSetDate()"
+    @dblclick="day !== 99 && showModal()"
   >
     <v-card-title class="fit-content py-0">
       {{ day != 99 ? day : null }}
